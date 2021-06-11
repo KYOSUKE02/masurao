@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "257340757129",
+    "project_id": "masurao-3e1d7",
+    "storage_bucket": "masurao-3e1d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257340757129:android:3e173a5ebee74b3a89a258",
+        "android_client_info": {
+          "package_name": "com.example.masurao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257340757129-q7e4bbp2m9jrquhf95h66r0u5dd4o744.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuuz9NS7kRw183xoh5XzhBwAXhs0GNUkQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257340757129-q7e4bbp2m9jrquhf95h66r0u5dd4o744.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
