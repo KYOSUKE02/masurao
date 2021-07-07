@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../../../UserModel.dart';
 
 class MatchPage extends StatefulWidget {
-  MatchPage();
   @override
   _MatchPageState createState() => _MatchPageState();
 }
@@ -17,6 +16,11 @@ class _MatchPageState extends State<MatchPage> {
   Timestamp start_time;
   Timestamp end_time;
   int cost;
+  bool _pinned = false;
+  bool _snap = false;
+  bool _floating = false;
+
+  List<DocumentSnapshot> documentList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +72,27 @@ class _MatchPageState extends State<MatchPage> {
                             },
                           ),
                           TextFormField(
-                            decoration: InputDecoration(labelText: 'コスト'),
+                            decoration: InputDecoration(labelText: '試合カテゴリ'),
+                            keyboardType: TextInputType.multiline,
+                            maxLines: 1,
+                            onChanged: (String value) {
+                              setState(() {
+                                teamName = value;
+                              });
+                            },
+                          ),
+                          TextFormField(
+                            decoration: InputDecoration(labelText: 'レベル'),
+                            keyboardType: TextInputType.multiline,
+                            maxLines: 1,
+                            onChanged: (String value) {
+                              setState(() {
+                                teamName = value;
+                              });
+                            },
+                          ),
+                          TextFormField(
+                            decoration: InputDecoration(labelText: '諸費用'),
                             keyboardType: TextInputType.multiline,
                             maxLines: 1,
                             onChanged: (String value) {
@@ -117,44 +141,72 @@ class _MatchPageState extends State<MatchPage> {
               });
         },
       ),
-      body: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.all(8),
-            child: Text('ログイン情報'),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: _pinned,
+            snap: _snap,
+            floating: _floating,
+            expandedHeight: 120.0,
+            flexibleSpace: const FlexibleSpaceBar(
+              title: Text('Make Match'),
+              background: FlutterLogo(),
+            ),
           ),
-          FlatButton(
-              onPressed: () async {
-                await FirebaseFirestore.instance
-                    .collection('users')
-                    .doc('id_abc')
-                    .set({'name': '鈴木', 'age': 40});
-              },
-              child: Text("ose"))
-          // Expanded(
-          //   child: StreamBuilder<QuerySnapshot>(
-          //     stream:
-          //         FirebaseFirestore.instance.collection('matches').snapshots(),
-          //     builder: (context, snapshot) {
-          //       if (snapshot.hasData) {
-          //         final List<DocumentSnapshot> documents = snapshot.data.docs;
-          //         return ListView(
-          //             children: documents.map((document) {
-          //           return Card(
-          //             child: ListTile(
-          //               title: Text(document['team_name']),
-          //               // subtitle: Text(document['start_time']),
-          //             ),
-          //           );
-          //         }).toList()
-          //             // ignore: missing_return
-          //
-          //             );
-          //       }
-          //     },
-          //   ),
-          // )
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 20,
+              child: Center(
+                child: Text('Scroll to see the sliverappbar'),
+              ),
+            ),
+          ),
+          SliverList(
+              delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              return Container(
+                color: index.isOdd ? Colors.white : Colors.black12,
+                height: 100,
+                child: Center(
+                  child: Text('$index', textScaleFactor: 5),
+                ),
+              );
+            },
+            childCount: 20,
+          ))
         ],
+        // children: [
+        //   Container(
+        //
+        //   // ignore: deprecated_member_use
+        //   FlatButton(
+        //       onPressed: () async {
+        //         await FirebaseFirestore.instance
+        //             .collection('users')
+        //             .doc('id_abc')
+        //             .collection('orders')
+        //             .doc('id_123')
+        //             .set({'price': 600, 'date': '9:00'});
+        //       },
+        //       child: Text("ose")),
+        //   FlatButton(
+        //       onPressed: () async {
+        //         final snapshot =
+        //             await FirebaseFirestore.instance.collection('users').get();
+        //         setState(() {
+        //           documentList = snapshot.docs;
+        //         });
+        //       },
+        //       child: Text("sue")),
+        //   Column(
+        //     children: documentList.map((document) {
+        //       return ListTile(
+        //         title: Text('${document['name']}さん'),
+        //         subtitle: Text('${document['age']}歳'),
+        //       );
+        //     }).toList(),
+        //   ),
+        // ],
       ),
     );
   }

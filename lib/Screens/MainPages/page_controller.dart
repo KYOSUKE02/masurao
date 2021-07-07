@@ -31,21 +31,21 @@ class _PageTabState extends State<PageTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('MASURAO For Futsal'),
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                await Navigator.of(context)
-                    .pushReplacement(MaterialPageRoute(builder: (context) {
-                  return WelcomePage();
-                }));
-              },
-              icon: Icon(Icons.logout))
-        ],
-      ),
+      // appBar: AppBar(
+      //   title: Text('MASURAO For Futsal'),
+      //   automaticallyImplyLeading: false,
+      //   actions: [
+      //     IconButton(
+      //         onPressed: () async {
+      //           await FirebaseAuth.instance.signOut();
+      //           await Navigator.of(context)
+      //               .pushReplacement(MaterialPageRoute(builder: (context) {
+      //             return WelcomePage();
+      //           }));
+      //         },
+      //         icon: Icon(Icons.logout))
+      //   ],
+      // ),
       body: tabs[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTappped,

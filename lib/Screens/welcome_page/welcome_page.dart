@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:masurao/Screens/LoginPage/LoginPage.dart';
 import 'package:masurao/UserModel.dart';
 import 'package:masurao/Screens/SignUpPage/SignUpPage.dart';
+import 'package:masurao/res/theme.dart';
+import 'package:masurao/res/widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_sliding_tutorial/flutter_sliding_tutorial.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class WelcomePage extends StatelessWidget {
   static const String id = 'welcome_page';
@@ -14,14 +18,14 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFB22222),
+        backgroundColor: BackgroundColor,
         body: SafeArea(
           child: Column(
             children: [
               Expanded(
                   child: Container(
                 width: double.infinity,
-                height: 500,
+                height: 600,
                 child: Stack(
                   children: [
                     Padding(
@@ -32,11 +36,8 @@ class WelcomePage extends StatelessWidget {
                         children: [
                           Stack(
                             children: [
-                              Image.asset(
-                                  'images/tianshu-liu-SBK40fdKbAg-unsplash.jpg',
-                                  width: double.infinity,
-                                  height: double.infinity,
-                                  fit: BoxFit.cover),
+                              image(
+                                  'images/tianshu-liu-SBK40fdKbAg-unsplash.jpg'),
                               Align(
                                 alignment: Alignment(0, -1),
                                 child: Text(
@@ -51,16 +52,10 @@ class WelcomePage extends StatelessWidget {
                               )
                             ],
                           ),
-                          Image.asset(
-                              'images/totte-annerbrink-7PRi1chCnrs-unsplash.jpg',
-                              width: double.infinity,
-                              height: double.infinity,
-                              fit: BoxFit.cover),
-                          Image.asset(
-                              'images/totte-annerbrink-7PRi1chCnrs-unsplash.jpg',
-                              width: double.infinity,
-                              height: double.infinity,
-                              fit: BoxFit.cover),
+                          image(
+                              'images/totte-annerbrink-7PRi1chCnrs-unsplash.jpg'),
+                          image(
+                              'images/totte-annerbrink-7PRi1chCnrs-unsplash.jpg'),
                         ],
                       ),
                     ),
@@ -77,47 +72,12 @@ class WelcomePage extends StatelessWidget {
                   ],
                 ),
               )),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: 130,
-                    height: 30,
-                    child: OutlinedButton(
-                      child: Text(
-                        '新規登録',
-                        style: TextStyle(
-                          color: Colors.white,
-                          // backgroundColor: Colors.black.withOpacity(0),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SignUpPage()),
-                        );
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    width: 130,
-                    height: 30,
-                    child: OutlinedButton(
-                      child: Text(
-                        'ログイン',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                        );
-                      },
-                    ),
-                  ),
-                ],
+              Container(
+                padding: EdgeInsets.all(15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [Login_button('ログイン'), Register_button('新規登録')],
+                ),
               ),
             ],
           ),
